@@ -1,0 +1,26 @@
+{
+  "name": "desafio-backend-m02-b2bt05",
+  "version": "1.0.0",
+  "description": "- [ ] Faça o fork desse repositório para o seu GitHub\r - [ ] Clone o seu repositório em sua máquina\r - [ ] Desenvolva seu projeto, fazendo commits a cada alteração e push\r - [ ] Crie um PR (pull request)\r - [ ] Envie o link do pull request que você criou na plataforma da Cubos",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leila-bwt/desafio-backend-m02-b2bt05.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leila-bwt/desafio-backend-m02-b2bt05/issues"
+  },
+  "homepage": "https://github.com/leila-bwt/desafio-backend-m02-b2bt05#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
