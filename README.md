@@ -1,443 +1,170 @@
 # Primeira Alteração - PR #
 
-Descrição do desafio
-Você acabou de ser contratado pela melhor empresa de tecnologia do mundo: a CUBOS. Sua primeira tarefa como desenvolvedor é criar uma API para um Banco Digital. Esse será um projeto piloto, ou seja, no futuro outras funcionalidades serão implementadas, portanto, dados do banco (nome, agência, etc.) serão imutáveis.
+## RESTful API
 
-Seu papel é construir uma RESTful API que permita:
+## Indice
+**[Sobre](#sobre)**<br>
+**[Operações de CRUD](#operações-de-crud)**<br>
+    *[-- CREATE](#create)*<br>
+    *[-- READ](#read)*<br>
+    *[-- UPDATE](#update)*<br>
+    *[-- DELETE](#delete)*<br>
 
-Criar conta bancária
-Listar contas bancárias
-Atualizar os dados do usuário da conta bancária
-Excluir uma conta bancária
-Depósitar em uma conta bancária
-Sacar de uma conta bancária
-Transferir valores entre contas bancárias
-Consultar saldo da conta bancária
-Emitir extrato bancário
-Importante: Sempre que a validação de uma requisição falhar, responda com código de erro e mensagem adequada à situação, ok?
+**[Demais Funcionalidades](#demais-funcionalidades)**<br>
+    *[-- Depositar](#Depositar)*<br>
+    *[-- Sacar](#Sacar)*<br>
+    *[-- Saldo](#Saldo)*<br>
+    *[-- Extrato](#Extrato)*<br>
+    
+**[Tecnologias Utilizadas](#tecnologias-utilizadas)**<br>
+**[Possíveis Melhorias](#possíveis-melhorias)**<br>
 
-Exemplo:
 
-// Quando é informado um número de conta que não existe:
-// HTTP Status 404
-{
-    "mensagem": "Conta bancária não encontada!"
-}
-Persistências dos dados
-Os dados serão persistidos em memória, no objeto existente dentro do arquivo bancodedados.js. Todas as transações e contas bancárias deverão ser inseridas dentro deste objeto, seguindo a estrutura que já existe.
+## Sobre:
 
-Estrutura do objeto no arquivo bancodedados.js
-{
-    banco: {
-        nome: "Cubos Bank",
-        numero: "123",
-        agencia: "0001",
-        senha: "Cubos123Bank",
-    },
-    contas: [
-        // array de contas bancárias
-    ],
-    saques: [
-        // array de saques
-    ],
-    depositos: [
-        // array de depósitos
-    ],
-    transferencias: [
-        // array de transferências
-    ],
-}
-Requisitos obrigatórios
-Sua API deve seguir o padrão REST
-Seu código deve estar organizado, delimitando as responsabilidades de cada arquivo adequadamente. Ou seja, é esperado que ele tenha, no mínimo:
-Um arquivo index.js
-Um arquivo de rotas
-Um pasta com controladores
-Qualquer valor (dinheiro) deverá ser representado em centavos (Ex.: R$ 10,00 reais = 1000)
-Evite códigos duplicados. Antes de copiar e colar, pense se não faz sentido esse pedaço de código estar centralizado numa função.
-Status Code
-Abaixo, listamos os possíveis status code esperados como resposta da API.
+<p>Desenvolvimento de uma API para um Banco Digital. Esse é um projeto piloto que, no futuro, serão implementadas outras funcionalidades<p>
 
-Obs.: A lista abaixo é para consulta, não significa que todos os status codes precisam necessariamente ser utilizados.
+<p> Código organizado, delimitando as responsabilidades de cada arquivo adequadamente sendo um arquivo index.js,
+um arquivo de rotas e uma pasta com controladores</p>
 
-// 200 (OK) = requisição bem sucedida
-// 201 (Created) = requisição bem sucedida e algo foi criado
-// 204 (No Content) = requisição bem sucedida, sem conteúdo no corpo da resposta
-// 400 (Bad Request) = o servidor não entendeu a requisição pois está com uma sintaxe/formato inválido
-// 401 (Unauthorized) = o usuário não está autenticado (logado)
-// 403 (Forbidden) = o usuário não tem permissão de acessar o recurso solicitado
-// 404 (Not Found) = o servidor não pode encontrar o recurso solicitado
-// 500 (Internal Server Error) = falhas causadas pelo servidor
+![estrutura](https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/7bafc5a2-01a9-4962-82d9-0bc646ef1ffe)
 
-Endpoints
+## Operações de CRUD
+ / RESTful API que permita:
+### CREATE - Criar conta bancária:
 
-Listar contas bancárias
-GET /contas?senha_banco=Cubos123Bank
-Esse endpoint deverá listar todas as contas bancárias existentes.
+* Criar uma nova conta com número único (Id);
+* Campo 'CPF e Email' deverá ser único
+* Verificar se todos os campos foram informados
+* Saldo inicial será sempre 0
+  
+https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/dcb254c8-2f1a-4e54-a9a3-53ad5a5f82d3
 
-Você deverá, OBRIGATORIAMENTE:
 
-Verificar se a senha do banco foi informada (passado como query params na url)
-Validar se a senha do banco está correta
-Requisição - query params (respeitando este nome)
 
-senha_banco
-Resposta
 
-listagem de todas as contas bancárias existentes
-Exemplo de resposta
-// HTTP Status 200 / 201 / 204
-// 2 contas encontradas
-[
-    {
-        "numero": "1",
-        "saldo": 0,
-        "usuario": {
-            "nome": "Foo Bar",
-            "cpf": "00011122233",
-            "data_nascimento": "2021-03-15",
-            "telefone": "71999998888",
-            "email": "foo@bar.com",
-            "senha": "1234"
-        }
-    },
-    {
-        "numero": "2",
-        "saldo": 1000,
-        "usuario": {
-            "nome": "Foo Bar 2",
-            "cpf": "00011122234",
-            "data_nascimento": "2021-03-15",
-            "telefone": "71999998888",
-            "email": "foo@bar2.com",
-            "senha": "12345"
-        }
-    }
-]
 
-// nenhuma conta encontrada
-[]
-// HTTP Status 400 / 401 / 403 / 404
-{
-    "mensagem": "A senha do banco informada é inválida!"
-}
-Criar conta bancária
-POST /contas
-Esse endpoint deverá criar uma conta bancária, onde será gerado um número único para identificação da conta (número da conta).
+### READ - Listar contas bancárias cadastradas:
+* Verificar se a senha do banco foi informada (passado como query params na url)
+* Validar se a senha do banco está correta
+* Requisição - query params (senha_banco)
+  
+https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/073ab3ca-f6d2-45da-bcc7-cb381354520f
 
-Você deverá, OBRIGATORIAMENTE:
 
-Criar uma nova conta cujo número é único
-CPF deve ser um campo único.
-E-mail deve ser um campo único.
-Verificar se todos os campos foram informados (todos são obrigatórios)
-Definir o saldo inicial da conta como 0
-Requisição - O corpo (body) deverá possuir um objeto com as seguintes propriedades (respeitando estes nomes):
 
-nome
-cpf
-data_nascimento
-telefone
-email
-senha
-Resposta
 
-Em caso de sucesso, não deveremos enviar conteúdo no corpo (body) da resposta.
-Em caso de falha na validação, a resposta deverá possuir status code apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade mensagem que deverá possuir como valor um texto explicando o motivo da falha.
 
-Exemplo de Requisição
-// POST /contas
-{
-    "nome": "Foo Bar 2",
-    "cpf": "00011122234",
-    "data_nascimento": "2021-03-15",
-    "telefone": "71999998888",
-    "email": "foo@bar2.com",
-    "senha": "12345"
-}
-Exemplo de Resposta
-// HTTP Status 200 / 201 / 204
-// Sem conteúdo no corpo (body) da resposta
-// HTTP Status 400 / 401 / 403 / 404
-{
-    "mensagem": "Já existe uma conta com o cpf ou e-mail informado!"
-}
-Atualizar usuário da conta bancária
-PUT /contas/:numeroConta/usuario
-Esse endpoint deverá atualizar apenas os dados do usuário de uma conta bancária.
+### UPDATE - Atualizar os dados do usuário da conta bancária:
+* Validar o número da conta passado no parametro URL de uma conta cadastrada
+* O corpo (body) apresenta um objeto com todas as propriedades do usuário
+* Identificar CPF e/ou email já cadastrado
+* Todos os campos deverão ser preenchidos
 
-Você deverá, OBRIGATORIAMENTE:
+https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/c0628c33-9303-459f-8e9b-02a72b460028
 
-Verificar se foi passado todos os campos no body da requisição
-Verificar se o numero da conta passado como parametro na URL é válida
-Se o CPF for informado, verificar se já existe outro registro com o mesmo CPF
-Se o E-mail for informado, verificar se já existe outro registro com o mesmo E-mail
-Atualizar os dados do usuário de uma conta bancária
-Requisição - O corpo (body) deverá possuir um objeto com todas as seguintes propriedades (respeitando estes nomes):
 
-nome
-cpf
-data_nascimento
-telefone
-email
-senha
-Resposta
 
-Em caso de sucesso, não deveremos enviar conteúdo no corpo (body) da resposta.
-Em caso de falha na validação, a resposta deverá possuir status code apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade mensagem que deverá possuir como valor um texto explicando o motivo da falha.
+### DELETE - Excluir uma conta bancária:
+* Verificar se o numero da conta passado como parametro na URL é válido
+* Permitir excluir uma conta bancária apenas se o saldo for 0 (zero)
+* Remover a conta do objeto de persistência de dados.
+* Numero da conta bancária (passado como parâmetro na rota)
+  
+https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/fa92ed22-30a6-4d3d-b955-60deddb7be00
 
-Exemplo de Requisição
-// PUT /contas/:numeroConta/usuario
-{
-    "nome": "Foo Bar 3",
-    "cpf": "99911122234",
-    "data_nascimento": "2021-03-15",
-    "telefone": "71999998888",
-    "email": "foo@bar3.com",
-    "senha": "12345"
-{
-Exemplo de Resposta
-// HTTP Status 200 / 201 / 204
-// Sem conteúdo no corpo (body) da resposta
-// HTTP Status 400 / 401 / 403 / 404
-{
-    "mensagem": "O CPF informado já existe cadastrado!"
-}
-Excluir Conta
-DELETE /contas/:numeroConta
-Esse endpoint deve excluir uma conta bancária existente.
 
-Você deverá, OBRIGATORIAMENTE:
 
-Verificar se o numero da conta passado como parametro na URL é válido
-Permitir excluir uma conta bancária apenas se o saldo for 0 (zero)
-Remover a conta do objeto de persistência de dados.
-Requisição
 
-Numero da conta bancária (passado como parâmetro na rota)
-Resposta
+## Demais Funcionalidades:
 
-Em caso de sucesso, não deveremos enviar conteúdo no corpo (body) da resposta.
-Em caso de falha na validação, a resposta deverá possuir status code apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade mensagem que deverá possuir como valor um texto explicando o motivo da falha.
+### Depositar em uma conta bancária
+* Verificar se a conta bancária informada existe
+* Não permitir depósitos com valores negativos ou zerados
+* Somar o valor de depósito ao saldo da conta encontrada
+* O corpo (body) deverá possuir um objeto com as seguintes propriedades (numero_conta, valor):
 
-Exemplo de Resposta
-// HTTP Status 200 / 201 / 204
-// Sem conteúdo no corpo (body) da resposta
-// HTTP Status 400 / 401 / 403 / 404
-{
-    "mensagem": "A conta só pode ser removida se o saldo for zero!"
-}
-Depositar
-POST /transacoes/depositar
-Esse endpoint deverá somar o valor do depósito ao saldo de uma conta válida e registrar essa transação.
+https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/a7a1ef8b-8b2a-4c72-9a9e-db5ec6f7b4ca
 
-Você deverá, OBRIGATORIAMENTE:
 
-Verificar se o numero da conta e o valor do deposito foram informados no body
-Verificar se a conta bancária informada existe
-Não permitir depósitos com valores negativos ou zerados
-Somar o valor de depósito ao saldo da conta encontrada
-Requisição - O corpo (body) deverá possuir um objeto com as seguintes propriedades (respeitando estes nomes):
+ 
 
-numero_conta
-valor
-Resposta
 
-Em caso de sucesso, não deveremos enviar conteúdo no corpo (body) da resposta.
-Em caso de falha na validação, a resposta deverá possuir status code apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade mensagem que deverá possuir como valor um texto explicando o motivo da falha.
+### Sacar de uma conta bancária
+* Verificar se o numero da conta, o valor do saque e a senha foram informados no body
+* Verificar se a conta bancária informada existe
+* Verificar se a senha informada é uma senha válida para a conta informada
+* Verificar se há saldo disponível para saque
+* Subtrair o valor sacado do saldo da conta encontrada
+* O corpo (body) deverá possuir um objeto com as seguintes propriedades (numero_conta, valor, senha):
 
-Exemplo de Requisição
-// POST /transacoes/depositar
-{
-	"numero_conta": "1",
-	"valor": 1900
-}
-Exemplo de Resposta
-// HTTP Status 200 / 201 / 204
-// Sem conteúdo no corpo (body) da resposta
-// HTTP Status 400 / 401 / 403 / 404
-{
-    "mensagem": "O número da conta e o valor são obrigatórios!"
-}
-Exemplo do registro de um depósito
-{
-    "data": "2021-08-10 23:40:35",
-    "numero_conta": "1",
-    "valor": 10000
-}
-Sacar
-POST /transacoes/sacar
-Esse endpoint deverá realizar o saque de um valor em uma determinada conta bancária e registrar essa transação.
+https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/22f6c952-5f11-40e6-be8c-5b84ee4efdd7
 
-Você deverá, OBRIGATORIAMENTE:
 
-Verificar se o numero da conta, o valor do saque e a senha foram informados no body
-Verificar se a conta bancária informada existe
-Verificar se a senha informada é uma senha válida para a conta informada
-Verificar se há saldo disponível para saque
-Subtrair o valor sacado do saldo da conta encontrada
-Requisição - O corpo (body) deverá possuir um objeto com as seguintes propriedades (respeitando estes nomes):
 
-numero_conta
-valor
-senha
-Resposta
 
-Em caso de sucesso, não deveremos enviar conteúdo no corpo (body) da resposta.
-Em caso de falha na validação, a resposta deverá possuir status code apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade mensagem que deverá possuir como valor um texto explicando o motivo da falha.
 
-Exemplo de Requisição
-// POST /transacoes/sacar
-{
-	"numero_conta": "1",
-	"valor": 1900,
-    "senha": "123456"
-}
-Exemplo de Resposta
-// HTTP Status 200 / 201 / 204
-// Sem conteúdo no corpo (body) da resposta
-// HTTP Status 400 / 401 / 403 / 404
-{
-    "mensagem": "O valor não pode ser menor que zero!"
-}
-Exemplo do registro de um saque
-{
-    "data": "2021-08-10 23:40:35",
-    "numero_conta": "1",
-    "valor": 10000
-}
-Tranferir
-POST /transacoes/transferir
-Esse endpoint deverá permitir a transferência de recursos (dinheiro) de uma conta bancária para outra e registrar essa transação.
+### Tranferir valores entre contas bancárias
+* Verificar se o número da conta de origem, de destino, senha da conta de origem e valor da transferência foram informados no body
+* Verificar se as contas bancárias de origem e destino informadas existem
+* Verificar se a senha informada é uma senha válida para a conta de origem informada
+* Verificar se há saldo disponível na conta de origem para a transferência
+* Subtrair o valor da transfência do saldo na conta de origem
+* Somar o valor da transferência no saldo da conta de destino
 
-Você deverá, OBRIGATORIAMENTE:
+https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/49caf05e-910b-4b66-be1d-619f705dcd6f
 
-Verificar se o número da conta de origem, de destino, senha da conta de origem e valor da transferência foram informados no body
-Verificar se a conta bancária de origem informada existe
-Verificar se a conta bancária de destino informada existe
-Verificar se a senha informada é uma senha válida para a conta de origem informada
-Verificar se há saldo disponível na conta de origem para a transferência
-Subtrair o valor da transfência do saldo na conta de origem
-Somar o valor da transferência no saldo da conta de destino
-Requisição - O corpo (body) deverá possuir um objeto com as seguintes propriedades (respeitando estes nomes):
 
-numero_conta_origem
-numero_conta_destino
-valor
-senha
-Resposta
 
-Em caso de sucesso, não deveremos enviar conteúdo no corpo (body) da resposta.
-Em caso de falha na validação, a resposta deverá possuir status code apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade mensagem que deverá possuir como valor um texto explicando o motivo da falha.
 
-Exemplo de Requisição
-// POST /transacoes/transferir
-{
-	"numero_conta_origem": "1",
-	"numero_conta_destino": "2",
-	"valor": 200,
-	"senha": "123456"
-}
-Exemplo de Resposta
-// HTTP Status 200 / 201 / 204
-// Sem conteúdo no corpo (body) da resposta
-// HTTP Status 400 / 401 / 403 / 404
-{
-    "mensagem": "Saldo insuficiente!"
-}
-Exemplo do registro de uma transferência
-{
-    "data": "2021-08-10 23:40:35",
-    "numero_conta_origem": "1",
-    "numero_conta_destino": "2",
-    "valor": 10000
-}
-Saldo
-GET /contas/saldo?numero_conta=123&senha=123
-Esse endpoint deverá retornar o saldo de uma conta bancária.
+### Consultar saldo da conta bancária
+* Verificar se o numero da conta e a senha foram informadas (passado como query params na url)
+* Verificar se a conta bancária informada existe
+* Verificar se a senha informada é uma senha válida
+* Exibir o saldo da conta bancária em questão
 
-Você deverá, OBRIGATORIAMENTE:
+https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/cb130f2e-aeb0-4075-97ed-473a2b93b1db
 
-Verificar se o numero da conta e a senha foram informadas (passado como query params na url)
-Verificar se a conta bancária informada existe
-Verificar se a senha informada é uma senha válida
-Exibir o saldo da conta bancária em questão
-Requisição - query params
 
-numero_conta
-senha
-Resposta
 
-Saldo da conta
-Exemplo de Resposta
-// HTTP Status 200 / 201 / 204
-{
-    "saldo": 13000
-}
-// HTTP Status 400 / 401 / 403 / 404
-{
-    "mensagem": "Conta bancária não encontada!"
-}
-Extrato
-GET /contas/extrato?numero_conta=123&senha=123
-Esse endpoint deverá listar as transações realizadas de uma conta específica.
 
-Você deverá, OBRIGATORIAMENTE:
+### Emitir extrato bancário
+* Verificar se o numero da conta e a senha foram informadas (passado como query params na url)
+* Verificar se a conta bancária informada existe
+* Verificar se a senha informada é uma senha válida
+* Retornar a lista de transferências, depósitos e saques da conta em questão.
 
-Verificar se o numero da conta e a senha foram informadas (passado como query params na url)
-Verificar se a conta bancária informada existe
-Verificar se a senha informada é uma senha válida
-Retornar a lista de transferências, depósitos e saques da conta em questão.
-Requisição - query params
+https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/50c58729-e2a3-410a-b371-8536e72e18e0
 
-numero_conta
-senha
-Resposta
 
-Relatório da conta
-Exemplo de Resposta
-// HTTP Status 200 / 201 / 204
-{
-  "depositos": [
-    {
-      "data": "2021-08-18 20:46:03",
-      "numero_conta": "1",
-      "valor": 10000
-    },
-    {
-      "data": "2021-08-18 20:46:06",
-      "numero_conta": "1",
-      "valor": 10000
-    }
-  ],
-  "saques": [
-    {
-      "data": "2021-08-18 20:46:18",
-      "numero_conta": "1",
-      "valor": 1000
-    }
-  ],
-  "transferenciasEnviadas": [
-    {
-      "data": "2021-08-18 20:47:10",
-      "numero_conta_origem": "1",
-      "numero_conta_destino": "2",
-      "valor": 5000
-    }
-  ],
-  "transferenciasRecebidas": [
-    {
-      "data": "2021-08-18 20:47:24",
-      "numero_conta_origem": "2",
-      "numero_conta_destino": "1",
-      "valor": 2000
-    },
-    {
-      "data": "2021-08-18 20:47:26",
-      "numero_conta_origem": "2",
-      "numero_conta_destino": "1",
-      "valor": 2000
-    }
+
+## Tecnologias Utilizadas:
+
+<div align="center">
+     <img src="https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/c8c29bd0-c843-4cb8-9b20-9d1d8ed220b4" alt="javascript" height="50" width="40"/>&nbsp;
+  <img src="https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/190429a3-c73f-4511-acd5-81c587a98842" alt="node.js" height="45" width="40"/>&nbsp;
+  <img src="https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/653d97ba-8b6a-4280-bf00-9d2b6a196374" alt="insomnia" height="40" width="40"/>&nbsp;
+   <img src="https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/defd1a31-c91f-4a01-927d-6a968ea4c5d0" alt="git" height="40" width="40"/>&nbsp;
+</div>
+
+
+## Instalação e desenvolvimento
+
+### Passo 1: Fork e clone do Repositório
+
+Feito o fork do repositório no github da Cubos Academy + clone o repositório do projeto usando o Git para integração de código fonte.
+
+```
+https://github.com/cubos-academy/desafio-backend-m02-b2bt05
+https://github.com/leila-bwt/desafio-backend-m02-b2bt05
+```
+
+
+## Possíveis melhorias:
+
+### Funcionalidade
+
+* Criar integração com banco de dados.
   ]
 }
 // HTTP Status 400 / 401 / 403 / 404
