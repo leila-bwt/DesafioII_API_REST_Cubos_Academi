@@ -38,21 +38,15 @@ um arquivo de rotas e uma pasta com controladores</p>
 * Verificar se todos os campos foram informados
 * Saldo inicial será sempre 0
   
-https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/dcb254c8-2f1a-4e54-a9a3-53ad5a5f82d3
-
-
-
+https://github.com/leila-bwt/DesafioII_API_REST_Cubos_Academi/assets/108028195/450b2d84-e7aa-4189-99d6-b93526f49aae
 
 
 ### READ - Listar contas bancárias cadastradas:
 * Verificar se a senha do banco foi informada (passado como query params na url)
 * Validar se a senha do banco está correta
 * Requisição - query params (senha_banco)
-  
-https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/073ab3ca-f6d2-45da-bcc7-cb381354520f
 
-
-
+https://github.com/leila-bwt/DesafioII_API_REST_Cubos_Academi/assets/108028195/4ecafe20-3d94-4e3b-801c-447bcd4092ad
 
 
 ### UPDATE - Atualizar os dados do usuário da conta bancária:
@@ -61,7 +55,8 @@ https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/073ab3c
 * Identificar CPF e/ou email já cadastrado
 * Todos os campos deverão ser preenchidos
 
-https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/c0628c33-9303-459f-8e9b-02a72b460028
+https://github.com/leila-bwt/DesafioII_API_REST_Cubos_Academi/assets/108028195/ee4e4506-869b-4c08-bb88-d3cbcb2cc4c0
+
 
 
 
@@ -71,9 +66,7 @@ https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/c0628c3
 * Remover a conta do objeto de persistência de dados.
 * Numero da conta bancária (passado como parâmetro na rota)
   
-https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/fa92ed22-30a6-4d3d-b955-60deddb7be00
-
-
+https://github.com/leila-bwt/DesafioII_API_REST_Cubos_Academi/assets/108028195/baa3f2b6-41fc-4da6-b5e2-acd4797c89e4
 
 
 ## Demais Funcionalidades:
@@ -84,10 +77,8 @@ https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/fa92ed2
 * Somar o valor de depósito ao saldo da conta encontrada
 * O corpo (body) deverá possuir um objeto com as seguintes propriedades (numero_conta, valor):
 
-https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/a7a1ef8b-8b2a-4c72-9a9e-db5ec6f7b4ca
-
-
  
+https://github.com/leila-bwt/DesafioII_API_REST_Cubos_Academi/assets/108028195/b76c61ea-2ba8-431a-8905-944e005bf060
 
 
 ### Sacar de uma conta bancária
@@ -96,12 +87,8 @@ https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/a7a1ef8
 * Verificar se a senha informada é uma senha válida para a conta informada
 * Verificar se há saldo disponível para saque
 * Subtrair o valor sacado do saldo da conta encontrada
-* O corpo (body) deverá possuir um objeto com as seguintes propriedades (numero_conta, valor, senha):
 
-https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/22f6c952-5f11-40e6-be8c-5b84ee4efdd7
-
-
-
+https://github.com/leila-bwt/DesafioII_API_REST_Cubos_Academi/assets/108028195/bd156ef7-f9dd-45fc-9ab7-cdf95d6c45e3
 
 
 ### Tranferir valores entre contas bancárias
@@ -112,10 +99,7 @@ https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/22f6c95
 * Subtrair o valor da transfência do saldo na conta de origem
 * Somar o valor da transferência no saldo da conta de destino
 
-https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/49caf05e-910b-4b66-be1d-619f705dcd6f
-
-
-
+https://github.com/leila-bwt/DesafioII_API_REST_Cubos_Academi/assets/108028195/788f3857-68a2-422f-989f-084a5d713422
 
 ### Consultar saldo da conta bancária
 * Verificar se o numero da conta e a senha foram informadas (passado como query params na url)
@@ -123,9 +107,7 @@ https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/49caf05
 * Verificar se a senha informada é uma senha válida
 * Exibir o saldo da conta bancária em questão
 
-https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/cb130f2e-aeb0-4075-97ed-473a2b93b1db
-
-
+https://github.com/leila-bwt/DesafioII_API_REST_Cubos_Academi/assets/108028195/a2eb3bc3-c21d-4b76-97da-de4b99c78cbd
 
 
 ### Emitir extrato bancário
@@ -134,8 +116,7 @@ https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/cb130f2
 * Verificar se a senha informada é uma senha válida
 * Retornar a lista de transferências, depósitos e saques da conta em questão.
 
-https://github.com/leila-bwt/desafio-backend-m02-b2bt05/assets/108028195/50c58729-e2a3-410a-b371-8536e72e18e0
-
+https://github.com/leila-bwt/DesafioII_API_REST_Cubos_Academi/assets/108028195/49bbc911-1407-47d5-8ed9-ddb431826fff
 
 
 ## Tecnologias Utilizadas:
@@ -165,9 +146,3 @@ https://github.com/leila-bwt/desafio-backend-m02-b2bt05
 ### Funcionalidade
 
 * Criar integração com banco de dados.
-  ]
-}
-// HTTP Status 400 / 401 / 403 / 404
-{
-    "mensagem": "Conta bancária não encontada!"
-}
